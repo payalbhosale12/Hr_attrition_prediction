@@ -12,7 +12,7 @@ st.set_page_config(page_title="HR Attrition Prediction", layout="centered")
 
 # Title
 st.markdown(
-    "<h1 style='text-align: center;'>📊 Customer Churn Prediction System</h1>",
+    "<h1 style='text-align: center;'>📊 HR Attrition Prediction System</h1>",
     unsafe_allow_html=True
 )
 
