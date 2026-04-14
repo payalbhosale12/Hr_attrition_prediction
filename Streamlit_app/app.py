@@ -8,11 +8,11 @@ model_path = os.path.join(os.path.dirname(__file__), 'RF_Model.pkl')
 model = pickle.load(open(model_path, 'rb'))
 
 # Page config
-st.set_page_config(page_title="HR Attrition Prediction", layout="centered")
+st.set_page_config(page_title="Customer Churn Prediction", layout="centered")
 
 # Title
 st.markdown(
-    "<h1 style='text-align: center;'>📊 HR Attrition Prediction System</h1>",
+    "<h1 style='text-align: center;'>📊 Customer Churn Prediction System</h1>",
     unsafe_allow_html=True
 )
 
