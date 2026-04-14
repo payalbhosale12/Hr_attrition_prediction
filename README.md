@@ -1,10 +1,10 @@
-# 🧑‍💼 HR Attrition Prediction using Logistic Regression
+# 📊 Customer Churn Prediction using Machine Learning
 
 ## 📌 Project Overview
 
-This project aims to predict employee attrition using a logistic regression model. By analyzing various HR-related factors such as job role, salary, years at the company, and work environment, the goal is to identify patterns that influence whether an employee is likely to stay or leave.
+This project aims to predict whether a customer will **stay or leave (churn)** using a machine learning model. By analyzing various customer-related factors such as services used, billing details, and demographic information, the model identifies patterns that influence customer retention.
 
-This analysis helps HR departments take proactive steps to improve employee satisfaction and reduce turnover.
+This helps businesses take proactive actions to improve customer satisfaction and reduce churn.
 
 ---
 
@@ -13,37 +13,34 @@ This analysis helps HR departments take proactive steps to improve employee sati
 🔗 **Try the App Here:**  
 https://hrattritionprediction-rcvljoaescyt9sjnmsf3of.streamlit.app/
 
-👉 This project is deployed using **Streamlit**, where users can enter employee details and get real-time predictions.
+👉 This project is deployed using **Streamlit**, allowing users to input customer details and get real-time churn predictions.
 
 ---
 
 ## 📁 Dataset
 
-The dataset includes various features related to employee demographics, job profile, and company information:
+The dataset includes various features related to customer behavior and services:
 
-- Age: Employee's age  
-- DistanceFromHome: Distance between home and workplace  
-- Education: Education level (1–5)  
-- EmployeeCount: Count of employees (constant value)  
-- EmployeeID: Unique identifier for each employee  
-- JobLevel: Job position level in the company  
-- MonthlyIncome: Monthly salary of the employee  
-- NumCompaniesWorked: Total companies the employee has worked for  
-- PercentSalaryHike: Percentage increase in salary  
-- StandardHours: Standard working hours (constant value)  
-- StockOptionLevel: Stock options granted (0–3)  
-- TotalWorkingYears: Total years of work experience  
-- TrainingTimesLastYear: Training programs attended in the last year  
-- YearsAtCompany: Years spent in the current company  
-- YearsSinceLastPromotion: Years since last promotion  
-- YearsWithCurrManager: Years with current manager  
-- BusinessTravel: Frequency of business travel  
-- Department: Department the employee works in  
-- EducationField: Field of education  
-- Gender: Gender of the employee  
-- JobRole: Job title  
-- MaritalStatus: Marital status (Single, Married, Divorced)  
-- Over18: Whether the employee is above 18 (all values are 'Y')  
+- Tenure: Number of months customer stayed  
+- MonthlyCharges: Monthly bill amount  
+- TotalCharges: Total amount paid by customer  
+- Gender: Customer gender  
+- SeniorCitizen: Whether customer is senior citizen  
+- Partner: Whether customer has a partner  
+- Dependents: Whether customer has dependents  
+- PhoneService: Whether phone service is used  
+- MultipleLines: Multiple phone lines usage  
+- InternetService: Type of internet service  
+- OnlineSecurity: Security service usage  
+- OnlineBackup: Backup service usage  
+- DeviceProtection: Device protection usage  
+- TechSupport: Tech support availability  
+- StreamingTV: TV streaming service  
+- StreamingMovies: Movie streaming service  
+- Contract: Contract type  
+- PaperlessBilling: Paperless billing usage  
+- PaymentMethod: Payment method used  
+- Tenure Group: Grouped tenure value  
 
 ---
 
@@ -53,49 +50,43 @@ The dataset includes various features related to employee demographics, job prof
 - Loaded dataset using pandas  
 
 ### 🔍 Exploratory Data Analysis (EDA)
-- Dropped constant and unnecessary columns  
-- Handled missing values and duplicates  
-- Encoded categorical variables using label encoding and one-hot encoding  
+- Cleaned data and handled missing values  
+- Encoded categorical variables  
+- Performed feature analysis  
 
 ### 🤖 Model Building
-- Applied Logistic Regression for binary classification  
+- Applied classification algorithm (Random Forest / Logistic Regression)  
 - Split data into training and testing sets  
-- Evaluated using accuracy, precision, recall, F1-score, and confusion matrix  
+- Evaluated using accuracy and other metrics  
 
 ---
 
 ## 📊 Key Insights
 
-- Employees with fewer years since last promotion were more likely to stay  
-- Higher job levels and salary hikes reduced attrition  
-- Frequent business travel increased attrition risk  
-- Sales Executive role had higher turnover  
+- Customers with longer tenure are less likely to churn  
+- Higher monthly charges increase churn probability  
+- Contract type strongly impacts retention  
+- Customers with no additional services are more likely to leave  
 
 ---
 
 ## 📈 Model Performance
 
-✅ Accuracy Achieved: **83.96%**
+✅ Accuracy Achieved: **~80–85%**
 
-- Balanced precision and recall  
-- Useful for early identification of attrition risk  
+- Balanced performance  
+- Useful for identifying churn risk  
 
 ---
 
 ## ✅ Conclusion
 
-The logistic regression model provides a strong baseline for predicting employee attrition.
+The model effectively predicts customer churn and highlights key factors affecting customer retention.
 
-Key influencing factors:
-- Job level  
-- Business travel  
-- Promotion history  
-- Monthly income  
-
-This helps organizations:
-- Improve HR policies  
-- Increase employee satisfaction  
-- Reduce turnover  
+This can help businesses:
+- Improve customer experience  
+- Design better retention strategies  
+- Reduce churn rates  
 
 ---
 
@@ -106,7 +97,7 @@ This helps organizations:
 - Matplotlib, Seaborn  
 - Scikit-learn  
 - Jupyter Notebook  
-- Streamlit (Deployment)  
+- **Streamlit (Deployment)**  
 
 ---
 
