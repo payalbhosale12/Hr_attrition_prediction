@@ -4,44 +4,92 @@ import numpy as np
 import os
 
 # Load model
-
 model_path = os.path.join(os.path.dirname(__file__), 'RF_Model.pkl')
 model = pickle.load(open(model_path, 'rb'))
 
+# Page config
 st.set_page_config(page_title="Customer Churn Prediction", layout="centered")
 
+# Title
 st.title("📊 Customer Churn Prediction System")
 
-st.markdown("Fill the details below:")
+# Intro
+st.markdown("""
+### 👋 Welcome!
+
+This system predicts whether a customer will **stay or leave (churn)** based on their details.
+
+### 📝 Field Guide (Important)
+- **Tenure** = How many months the customer has used the service  
+- **Monthly Charges** = How much the customer pays every month  
+- **Total Charges** = Total amount paid by the customer till now  
+👉 (Approx = Monthly Charges × Tenure)
+
+👉 Fill the details below:
+""")
+
+# ------------------ INPUT SECTION ------------------
+
+st.header("📋 Customer Details")
 
 # Numeric inputs
-tenure = st.number_input("Tenure", min_value=0)
-MonthlyCharges = st.number_input("Monthly Charges", min_value=0.0)
-TotalCharges = st.number_input("Total Charges", min_value=0.0)
+tenure = st.number_input(
+    "🕒 Tenure (Months customer stayed)",
+    min_value=0,
+    help="Example: 12 = 1 year"
+)
 
-# Dropdowns
-gender = st.selectbox("Gender", ["Female", "Male"])
-SeniorCitizen = st.selectbox("Senior Citizen", ["No", "Yes"])
-Partner = st.selectbox("Partner", ["No", "Yes"])
-Dependents = st.selectbox("Dependents", ["No", "Yes"])
-PhoneService = st.selectbox("Phone Service", ["No", "Yes"])
-MultipleLines = st.selectbox("Multiple Lines", ["No", "Yes", "No phone service"])
-InternetService = st.selectbox("Internet Service", ["DSL", "Fiber optic", "No"])
+MonthlyCharges = st.number_input(
+    "💰 Monthly Charges (Monthly bill amount)",
+    min_value=0.0,
+    help="Example: 500 means ₹500/month"
+)
 
-OnlineSecurity = st.selectbox("Online Security", ["No", "Yes"])
-OnlineBackup = st.selectbox("Online Backup", ["No", "Yes"])
-DeviceProtection = st.selectbox("Device Protection", ["No", "Yes"])
-TechSupport = st.selectbox("Tech Support", ["No", "Yes"])
-StreamingTV = st.selectbox("Streaming TV", ["No", "Yes"])
-StreamingMovies = st.selectbox("Streaming Movies", ["No", "Yes"])
+TotalCharges = st.number_input(
+    "💵 Total Charges (Total amount paid)",
+    min_value=0.0,
+    help="Example: 10000 total payment"
+)
 
-Contract = st.selectbox("Contract", ["Month-to-month", "One year", "Two year"])
-PaperlessBilling = st.selectbox("Paperless Billing", ["No", "Yes"])
-PaymentMethod = st.selectbox("Payment Method", ["Electronic check", "Mailed check", "Bank transfer", "Credit card"])
+# Basic info
+gender = st.selectbox("👤 Gender", ["Female", "Male"])
+SeniorCitizen = st.selectbox("👴 Senior Citizen (Age 60+?)", ["No", "Yes"])
 
-tenure_group = st.number_input("Tenure Group", min_value=0)
+# Family info
+Partner = st.selectbox("💑 Has Partner?", ["No", "Yes"])
+Dependents = st.selectbox("👶 Has Dependents?", ["No", "Yes"])
 
-# Encoding (IMPORTANT)
+# Services
+PhoneService = st.selectbox("📞 Phone Service?", ["No", "Yes"])
+MultipleLines = st.selectbox("📱 Multiple Phone Lines?", ["No", "Yes", "No phone service"])
+
+InternetService = st.selectbox("🌐 Internet Service", ["DSL", "Fiber optic", "No"])
+
+OnlineSecurity = st.selectbox("🔒 Online Security?", ["No", "Yes"])
+OnlineBackup = st.selectbox("💾 Online Backup?", ["No", "Yes"])
+DeviceProtection = st.selectbox("🛡 Device Protection?", ["No", "Yes"])
+TechSupport = st.selectbox("🧑‍💻 Tech Support?", ["No", "Yes"])
+
+StreamingTV = st.selectbox("📺 Streaming TV?", ["No", "Yes"])
+StreamingMovies = st.selectbox("🎬 Streaming Movies?", ["No", "Yes"])
+
+# Billing
+Contract = st.selectbox("📄 Contract Type", ["Month-to-month", "One year", "Two year"])
+PaperlessBilling = st.selectbox("📧 Paperless Billing?", ["No", "Yes"])
+
+PaymentMethod = st.selectbox(
+    "💳 Payment Method",
+    ["Electronic check", "Mailed check", "Bank transfer", "Credit card"]
+)
+
+tenure_group = st.number_input(
+    "📊 Tenure Group",
+    min_value=0,
+    help="You can enter same as tenure or grouped value"
+)
+
+# ------------------ ENCODING ------------------
+
 def encode_binary(val):
     return 1 if val == "Yes" else 0
 
@@ -65,8 +113,11 @@ def encode_payment(val):
 def encode_multiple(val):
     return {"No": 0, "Yes": 1, "No phone service": 2}[val]
 
-# Predict button
-if st.button("Predict"):
+# ------------------ PREDICTION ------------------
+
+st.markdown("---")
+
+if st.button("🔍 Predict Customer Status"):
 
     features = [
         tenure,
@@ -93,7 +144,11 @@ if st.button("Predict"):
 
     prediction = model.predict([features])
 
+    st.markdown("## 📢 Result")
+
     if prediction[0] == 1:
-        st.error("⚠️ Customer Will Churn")
+        st.error("⚠️ This customer is likely to LEAVE (Churn)")
     else:
-        st.success("✅ Customer Will Stay")
+        st.success("✅ This customer is likely to STAY")
+
+    st.markdown("💡 Prediction is based on customer usage, services, and billing behavior.")
