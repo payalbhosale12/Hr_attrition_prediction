@@ -11,43 +11,37 @@ model = pickle.load(open(model_path, 'rb'))
 st.set_page_config(page_title="HR Attrition Prediction", layout="centered")
 
 # Title
-st.title("📊 HR Attrition Prediction System")
-
-# Intro
-st.markdown("""
-### 👋 Welcome!
+st.markdown(
+    "<h1 style='text-align: center;'>📊 Customer Churn Prediction System</h1>",
+    unsafe_allow_html=True
+)
 
 This system predicts whether a customer will **stay or leave (churn)** based on their details.
-
-### 📝 Field Guide (Important)
-- **Tenure** = How many months the customer has used the service  
-- **Monthly Charges** = How much the customer pays every month  
-- **Total Charges** = Total amount paid by the customer till now  
 
 👉 Fill the details below:
 """)
 
 # ------------------ INPUT SECTION ------------------
 
-st.header("📋 Customer Details")
-
-# Numeric inputs
+# Tenure
 tenure = st.number_input(
-    "🕒 Tenure (Months customer stayed)",
+    "🕒 Tenure",
     min_value=0,
-    help="Example: 12 = 1 year"
+    help="How many months the customer has used the service.\nExample: 12 means 1 year."
 )
 
+# Monthly Charges
 MonthlyCharges = st.number_input(
-    "💰 Monthly Charges (Monthly bill amount)",
+    "💰 Monthly Charges",
     min_value=0.0,
-    help="Example: 500 means ₹500/month"
+    help="Amount the customer pays every month.\nExample: ₹500 per month."
 )
 
+# Total Charges
 TotalCharges = st.number_input(
-    "💵 Total Charges (Total amount paid)",
+    "💵 Total Charges",
     min_value=0.0,
-    help="Example: 10000 total payment"
+    help="Total amount paid by the customer till now.\nExample: ₹10,000 total."
 )
 
 # Basic info
