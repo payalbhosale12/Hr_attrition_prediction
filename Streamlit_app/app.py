@@ -18,7 +18,7 @@ st.markdown(
 
 This system predicts whether a customer will **stay or leave (churn)** based on their details.
 
-👉 Fill the details below:
+# Fill the details below:
 
 
 # ------------------ INPUT SECTION ------------------
