@@ -16,7 +16,9 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+st.markdown("""
 This system predicts whether a customer will **stay or leave (churn)** based on their details.
+""")
 
 # Fill the details below:
 
