@@ -110,15 +110,6 @@ This helps organizations:
 
 ---
 
-## 🌐 Deployment
-
-This project is deployed using **Streamlit Cloud**.
-
-🔗 Live App:  
-https://hrattritionprediction-rcvljoaescyt9sjnmsf3of.streamlit.app/
-
----
-
 ## 🙌 Author
 
 **Payal Bhosale**  
