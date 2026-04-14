@@ -8,10 +8,10 @@ model_path = os.path.join(os.path.dirname(__file__), 'RF_Model.pkl')
 model = pickle.load(open(model_path, 'rb'))
 
 # Page config
-st.set_page_config(page_title="Customer Churn Prediction", layout="centered")
+st.set_page_config(page_title="HR Attrition Prediction", layout="centered")
 
 # Title
-st.title("📊 Customer Churn Prediction System")
+st.title("📊 HR Attrition Prediction System")
 
 # Intro
 st.markdown("""
@@ -23,7 +23,6 @@ This system predicts whether a customer will **stay or leave (churn)** based on 
 - **Tenure** = How many months the customer has used the service  
 - **Monthly Charges** = How much the customer pays every month  
 - **Total Charges** = Total amount paid by the customer till now  
-👉 (Approx = Monthly Charges × Tenure)
 
 👉 Fill the details below:
 """)
@@ -119,36 +118,38 @@ st.markdown("---")
 
 if st.button("🔍 Predict Customer Status"):
 
-    features = [
-        tenure,
-        MonthlyCharges,
-        TotalCharges,
-        encode_gender(gender),
-        encode_binary(SeniorCitizen),
-        encode_binary(Partner),
-        encode_binary(Dependents),
-        encode_binary(PhoneService),
-        encode_multiple(MultipleLines),
-        encode_internet(InternetService),
-        encode_binary(OnlineSecurity),
-        encode_binary(OnlineBackup),
-        encode_binary(DeviceProtection),
-        encode_binary(TechSupport),
-        encode_binary(StreamingTV),
-        encode_binary(StreamingMovies),
-        encode_contract(Contract),
-        encode_binary(PaperlessBilling),
-        encode_payment(PaymentMethod),
-        tenure_group
-    ]
-
-    prediction = model.predict([features])
-
-    st.markdown("## 📢 Result")
-
-    if prediction[0] == 1:
-        st.error("⚠️ This customer is likely to LEAVE (Churn)")
+    # Validation check
+    if tenure == 0 or MonthlyCharges == 0 or TotalCharges == 0:
+        st.warning("⚠️ Please fill all important fields before prediction!")
     else:
-        st.success("✅ This customer is likely to STAY")
+        features = [
+            tenure,
+            MonthlyCharges,
+            TotalCharges,
+            encode_gender(gender),
+            encode_binary(SeniorCitizen),
+            encode_binary(Partner),
+            encode_binary(Dependents),
+            encode_binary(PhoneService),
+            encode_multiple(MultipleLines),
+            encode_internet(InternetService),
+            encode_binary(OnlineSecurity),
+            encode_binary(OnlineBackup),
+            encode_binary(DeviceProtection),
+            encode_binary(TechSupport),
+            encode_binary(StreamingTV),
+            encode_binary(StreamingMovies),
+            encode_contract(Contract),
+            encode_binary(PaperlessBilling),
+            encode_payment(PaymentMethod),
+            tenure_group
+        ]
 
-    st.markdown("💡 Prediction is based on customer usage, services, and billing behavior.")
+        prediction = model.predict([features])
+
+        st.markdown("## 📢 Result")
+
+        if prediction[0] == 1:
+            st.error("⚠️ This customer is likely to LEAVE (Churn)")
+        else:
+            st.success("✅ This customer is likely to STAY")
