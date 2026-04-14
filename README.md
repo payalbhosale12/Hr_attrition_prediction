@@ -11,7 +11,7 @@ This helps businesses take proactive actions to improve customer satisfaction an
 ## 🚀 Live Application (Deployed on Streamlit)
 
 🔗 **Try the App Here:**  
-https://hrattritionprediction-rcvljoaescyt9sjnmsf3of.streamlit.app/
+https://customerchurnprediction-kurmhyyxjdfxfy2w2qzc8n.streamlit.app/
 
 👉 This project is deployed using **Streamlit**, allowing users to input customer details and get real-time churn predictions.
 
